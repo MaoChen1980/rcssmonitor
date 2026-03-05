@@ -54,7 +54,7 @@ target_compile_definitions(rcssmonitor
 
 target_compile_options(rcssmonitor
   PRIVATE
-  -W -Wall
+  -W -Wall -DRCSS_DISABLE_SIMDJSON
   )
 
 set_target_properties(rcssmonitor

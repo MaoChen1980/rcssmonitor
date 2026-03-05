@@ -213,9 +213,13 @@ DispHolder::addDispInfoV3( const char * msg )
 bool
 DispHolder::addJSON( const char * msg )
 {
+#ifndef RCSS_DISABLE_SIMDJSON
     rcss::rcg::ParserSimdJSON parser;
     RCGHandler handler( nullptr, *this );
     return parser.parseData( msg, handler );
+#else
+    return false;
+#endif
 }
 
 

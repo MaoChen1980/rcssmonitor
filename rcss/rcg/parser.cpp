@@ -120,7 +120,9 @@ Parser::create( std::istream & is )
     }
     else if ( version == REC_VERSION_JSON )
     {
+#ifndef RCSS_DISABLE_SIMDJSON
         ptr = Parser::Ptr( new ParserSimdJSON() );
+#endif
     }
     else
     {

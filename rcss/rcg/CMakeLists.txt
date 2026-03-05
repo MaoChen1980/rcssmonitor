@@ -1,13 +1,11 @@
 
 add_library(rcssrcg SHARED
-  simdjson/simdjson.cpp
   handler.cpp
   parser.cpp
   parser_v1.cpp
   parser_v2.cpp
   parser_v3.cpp
   parser_v4.cpp
-  parser_simdjson.cpp
   util.cpp
   types.cpp
   )
@@ -22,7 +20,7 @@ target_include_directories(rcssrcg
 
 target_compile_options(rcssrcg
   PRIVATE
-  -W -Wall
+  -W -Wall -DRCSS_DISABLE_SIMDJSON
   )
 
 
