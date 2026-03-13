@@ -1,0 +1,325 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: Rule
+log-level: info
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver-policy:
+    geosite:cn,private:
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+    geosite:geolocation-!cn:
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+proxies:
+  - name: '16100'
+    type: vmess
+    server: savycn.online
+    port: 16100
+    uuid: 728b7bd1-2c7e-411a-d44e-55a71afe2375
+    alterId: .nan
+    cipher: auto
+    tls: false
+    servername: ''
+    network: tcp
+  - name: '16101'
+    type: vless
+    server: savycn.online
+    port: 16101
+    uuid: 5b3add1c-0a77-4bbb-8c82-abd368caffcb
+    tls: true
+    client-fingerprint: chrome
+    servername: ''
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+    flow: xtls-rprx-vision
+  - name: 16102+reality
+    type: vless
+    server: 43.167.188.93
+    port: 16102
+    uuid: dd478ea6-2f43-439f-b557-00a2e8679c43
+    tls: true
+    client-fingerprint: chrome
+    servername: apple.com
+    network: tcp
+    reality-opts:
+      public-key: '-hNEYKIH-j2tpHa5zn_s9ZgjYL0zb-G7aAW_lpRqqA8'
+      short-id: fa0f8987
+    tfo: false
+    skip-cert-verify: false
+    flow: xtls-rprx-vision
+  - name: '16103'
+    type: trojan
+    server: savycn.online
+    port: 16103
+    password: q4gU4as9DD
+    tls: true
+    client-fingerprint: chrome
+    sni: ''
+    network: tcp
+    tfo: false
+    skip-cert-verify: false
+proxy-groups:
+  - type: select
+    name: 🚀 节点选择
+    proxies:
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - name: ⚡ 自动选择
+    type: url-test
+    proxies:
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    lazy: false
+  - type: select
+    name: 🛑 广告拦截
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 💬 AI 服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 📹 油管视频
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🔍 谷歌服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🏠 私有网络
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🔒 国内服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 📲 电报消息
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🐱 Github
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: Ⓜ️ 微软服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🍏 苹果服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🌐 社交媒体
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🎬 流媒体
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 📚 教育资源
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 💰 金融服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: ☁️ 云服务
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🌐 非中国
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+  - type: select
+    name: 🐟 漏网之鱼
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+      - REJECT
+      - ⚡ 自动选择
+      - '16100'
+      - '16101'
+      - 16102+reality
+      - '16103'
+rules:
+  - GEOSITE,category-ads-all,🛑 广告拦截
+  - GEOSITE,openai,💬 AI 服务
+  - GEOSITE,anthropic,💬 AI 服务
+  - GEOSITE,jetbrains-ai,💬 AI 服务
+  - GEOSITE,perplexity,💬 AI 服务
+  - GEOSITE,youtube,📹 油管视频
+  - GEOSITE,google,🔍 谷歌服务
+  - GEOIP,google,🔍 谷歌服务,no-resolve
+  - GEOIP,private,🏠 私有网络,no-resolve
+  - GEOSITE,geolocation-cn,🔒 国内服务
+  - GEOIP,cn,🔒 国内服务,no-resolve
+  - GEOIP,telegram,📲 电报消息,no-resolve
+  - GEOSITE,github,🐱 Github
+  - GEOSITE,gitlab,🐱 Github
+  - GEOSITE,microsoft,Ⓜ️ 微软服务
+  - GEOSITE,apple,🍏 苹果服务
+  - GEOSITE,facebook,🌐 社交媒体
+  - GEOSITE,instagram,🌐 社交媒体
+  - GEOSITE,twitter,🌐 社交媒体
+  - GEOSITE,tiktok,🌐 社交媒体
+  - GEOSITE,linkedin,🌐 社交媒体
+  - GEOSITE,netflix,🎬 流媒体
+  - GEOSITE,hulu,🎬 流媒体
+  - GEOSITE,disney,🎬 流媒体
+  - GEOSITE,hbo,🎬 流媒体
+  - GEOSITE,amazon,🎬 流媒体
+  - GEOSITE,bahamut,🎬 流媒体
+  - GEOSITE,coursera,📚 教育资源
+  - GEOSITE,edx,📚 教育资源
+  - GEOSITE,udemy,📚 教育资源
+  - GEOSITE,khanacademy,📚 教育资源
+  - GEOSITE,category-scholar-!cn,📚 教育资源
+  - GEOSITE,paypal,💰 金融服务
+  - GEOSITE,visa,💰 金融服务
+  - GEOSITE,mastercard,💰 金融服务
+  - GEOSITE,stripe,💰 金融服务
+  - GEOSITE,wise,💰 金融服务
+  - GEOSITE,aws,☁️ 云服务
+  - GEOSITE,azure,☁️ 云服务
+  - GEOSITE,digitalocean,☁️ 云服务
+  - GEOSITE,heroku,☁️ 云服务
+  - GEOSITE,dropbox,☁️ 云服务
+  - GEOSITE,geolocation-!cn,🌐 非中国
+  - MATCH,🐟 漏网之鱼
